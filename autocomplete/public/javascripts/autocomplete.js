@@ -1,10 +1,33 @@
-const Autocomplete = {
+import debounce from './debounce.js';
+
+class Autocomplete {
+  constructor(url, inputElement) {
+    this.url = url;
+    this.input = inputElement;
+
+    this.listUI = null;
+    this.overlay = null;
+
+    this.visible = false;
+    this.matches = [];
+    this.bestMatchIndex = null;
+    this.selectedIndex = null;
+    this.previousValue = null;
+
+    this.wrapInput();
+    this.createUI();
+    this.valueChanged = debounce(this.valueChanged.bind(this), 300);
+
+    this.bindEvents();
+    this.reset();
+  }
+
   wrapInput() {
     const wrapper = document.createElement('div');
     wrapper.classList.add('autocomplete-wrapper');
     this.input.parentNode.appendChild(wrapper);
     wrapper.appendChild(this.input);
-  },
+  }
 
   createUI() {
     const wrapper = this.input.parentNode;
@@ -20,13 +43,23 @@ const Autocomplete = {
 
     wrapper.appendChild(overlay);
     this.overlay = overlay;
-  },
+  }
 
   bindEvents() {
-    this.input.addEventListener('input', this.valueChanged.bind(this));
+    this.input.addEventListener('input', this.valueChanged);
     this.input.addEventListener('keydown', this.handleKeydown.bind(this));
     this.listUI.addEventListener('mousedown', this.handleMousedown.bind(this));
-  },
+  }
+
+  reset() {
+    this.visible = false;
+    this.matches = [];
+    this.bestMatchIndex = null;
+    this.selectedIndex = null;
+    this.previousValue = null;
+
+    this.draw();
+  }  
 
   handleKeydown(event) {
     switch(event.key) {
@@ -63,16 +96,13 @@ const Autocomplete = {
         this.reset();
         break;
     }
-  },
+  }
 
   handleMousedown(event) {
-    // identify the country highlighted
     const country = event.target.textContent;
-    // set the value of the input to the country
     this.input.value = country;
-    // call reset
     this.reset();
-  },
+  }
 
   valueChanged() {
     const { value } = this.input;
@@ -90,7 +120,7 @@ const Autocomplete = {
     } else {
       this.reset();
     }
-  },
+  }
 
   fetchMatches(query, callback) {
     const request = new XMLHttpRequest();
@@ -102,7 +132,7 @@ const Autocomplete = {
     });
 
     request.send();
-  },
+  }
 
   draw() {
     while (this.listUI.lastChild) {
@@ -133,40 +163,16 @@ const Autocomplete = {
       li.textContent = match.name;
       this.listUI.appendChild(li);
     });
-  },
+  }
 
   generateOverlayContent(value, match) {
     const end = match.name.slice(value.length);
     return value + end;
-  },
-
-  reset() {
-    this.visible = false;
-    this.matches = [];
-    this.bestMatchIndex = null;
-    this.selectedIndex = null;
-    this.previousValue = null;
-
-    this.draw();
-  },
-
-  init() {
-    this.input = document.querySelector('input');
-    this.url = '/countries?matching=';
-
-    this.listUI = null;
-    this.overlay = null;
-    // this.visible = false;
-    // this.matches = [];
-
-    this.wrapInput();
-    this.createUI();
-    this.bindEvents();
-
-    this.reset();
   }
-};
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  Autocomplete.init();
+  const url = '/countries?matching=';
+  const input = document.querySelector('input');
+  const complete = new Autocomplete(url, input);
 });
