@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+  
+  <script id="tagTemplate" type="text/x-handlebars">
+    <strong>#{{this}}</strong>
+  </script>
+
+  <script id="posts" type="text/x-handlebars">
+    {{#each posts}}
+      <article>
+        <h1>{{title}}</h1>
+        <p><time>Posted on {{published}}</time></p>
+        {{{body}}}
+        <footer>
+          <p>
+            {{#if tags.length}}
+              Tags:
+              {{#each tags}}
+                {{> tagTemplate}}
+              {{/each}}
+            {{else}}
+              Not tagged
+            {{/if}}
+          </p>
+        </footer>
+      </article>
+    {{/each}}
+  </script>
+
+  <script src="./practice.js"></script>
+  <title>Handlebars Practice</title>
+</head>
+<body>
+  
+</body>
+</html>
