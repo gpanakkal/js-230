@@ -3,43 +3,15 @@
   <head>
     <title>Photo Gallery</title>
     <meta charset="UTF-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <script src="./javascripts/gallery.js"></script>
     <link rel="stylesheet" href="stylesheets/gallery.css" />
   </head>
   <body>
     <main>
       <h1>Amanda Rose's Photos</h1>
       <div id="slideshow">
-        <div id="slides">
-          <figure data-id="1">
-            <img src="http://via.placeholder.com/1280x1024" />
-            <figcaption>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </figcaption>
-          </figure>
-          <figure data-id="2">
-            <img src="http://via.placeholder.com/1280x1024/ffffff/0066cc" />
-            <figcaption>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti quos
-              dolores et quas molestias excepturi sint occaecati cupiditate non
-              provident, similique sunt in culpa qui officia deserunt mollitia
-              animi, id est laborum et dolorum fuga.
-            </figcaption>
-          </figure>
-          <figure data-id="3">
-            <img src="http://via.placeholder.com/1280x1024/0066cc/ffffff" />
-            <figcaption>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti quos
-              dolores et quas molestias excepturi sint occaecati cupiditate non
-              provident, similique sunt in culpa qui officia deserunt mollitia
-              animi, id est laborum et dolorum fuga.
-            </figcaption>
-          </figure>
-        </div>
+        <div id="slides"></div>
         <ul>
           <li><a class="prev" href="#">Prev</a></li>
           <li><a class="next" href="#">Next</a></li>
@@ -47,83 +19,11 @@
       </div>
 
       <section>
-        <header>
-          <h2>City Lights</h2>
-          <p><time>Taken on 3/31/15</time></p>
-          <div class="actions">
-            <a
-              href="/photos/like"
-              data-id="1"
-              data-property="likes"
-              class="button like"
-            >
-              ♡ 5 Likes
-            </a>
-            <a
-              href="/photos/favorite"
-              data-id="1"
-              data-property="favorites"
-              class="button favorite"
-            >
-              ☆ 2 Favorites
-            </a>
-          </div>
-        </header>
+        <header id="photo-info"></header>
 
         <div id="comments">
           <h3>Comments</h3>
-          <ul>
-            <li>
-              <article>
-                <figure>
-                  <img
-                    src="http://gravatar.com/avatar/9f6f9c0b100d371267f07a12f73edf9d"
-                  />
-                </figure>
-                <header>
-                  <h1>Shane Riley</h1>
-                  <p>
-                    <small><time>Posted 3/31/15</time></small>
-                  </p>
-                </header>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </article>
-            </li>
-            <li>
-              <article>
-                <figure>
-                  <img
-                    src="http://gravatar.com/avatar/0af2673451bb2c52eda2a7aa1f2467c9"
-                  />
-                </figure>
-                <header>
-                  <h1>Constance Zemicky</h1>
-                  <p>
-                    <small><time>Posted 3/31/15</time></small>
-                  </p>
-                </header>
-                <p>
-                  Keffiyeh next level readymade, hashtag chillwave tofu freegan
-                  PBR&amp;B cray four dollar toast Echo Park art party American
-                  Apparel Portland skateboard. Semiotics Bushwick flexitarian,
-                  plaid drinking vinegar deep v keytar lomo squid banjo
-                  sustainable try-hard PBR cronut ethical. Scenester bitters
-                  roof party tofu, disrupt flannel deep v Brooklyn meditation
-                  actually blog Austin pop-up Thundercats wayfarers.
-                  Fingerstache High Life brunch VHS, sriracha Bushwick hashtag
-                  Helvetica banh mi raw denim. Flannel Etsy keffiyeh blog
-                  stumptown bespoke leggings cornhole. Heirloom PBR&amp;B
-                  letterpress blog Odd Future readymade messenger bag, aesthetic
-                  literally. Yr Banksy banh mi authentic PBR.
-                </p>
-              </article>
-            </li>
-          </ul>
+          <ul></ul>
 
           <form action="/comments/new" method="post">
             <fieldset>
