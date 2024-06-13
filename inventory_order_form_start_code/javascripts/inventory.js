@@ -4,8 +4,7 @@ class Inventory {
   #lastId;
   #collection;
 
-  constructor(document) {
-    this.documentBody = document.body;
+  constructor() {
     this.#lastId = 0;
     this.#collection = [];
     this.setDate();
