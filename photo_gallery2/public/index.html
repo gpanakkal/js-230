@@ -3,8 +3,8 @@
   <head>
     <title>Photo Gallery</title>
     <meta charset="UTF-8" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
-    <script src="./javascripts/gallery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js" nonce=''></script>
+    <script src="./javascripts/gallery.js" nonce=''></script>
     <link rel="stylesheet" href="stylesheets/gallery.css" />
   </head>
   <body>
@@ -53,7 +53,7 @@
       </section>
     </main>
 
-    <script id="photos" type="text/x-handlebars">
+    <script id="photos" type="text/x-handlebars" nonce=''>
       {{#each photos}}
       <figure data-id="{{id}}">
         <img src="{{src}}" />
@@ -62,7 +62,7 @@
       {{/each}}
     </script>
 
-    <script id="photo_information" type="text/x-handlebars">
+    <script id="photo_information" type="text/x-handlebars" nonce=''>
       <h2>{{title}}</h2>
       <p><time>Taken on {{created_at}}</time></p>
       <div class="actions">
@@ -87,13 +87,13 @@
       </div>
     </script>
 
-    <script id="photo_comments" type="text/x-handlebars">
+    <script id="photo_comments" type="text/x-handlebars" nonce=''>
       {{#each comments}}
       {{> photo_comment}}
       {{/each}}
     </script>
 
-    <script id="photo_comment" data-type="partial" type="text/x-handlebars">
+    <script id="photo_comment" data-type="partial" type="text/x-handlebars" nonce=''>
       <li>
         <article>
           <figure>
